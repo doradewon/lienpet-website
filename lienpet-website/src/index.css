@@ -1,0 +1,115 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+@layer base {
+  :root {
+    /* Brand greens - from the lienpet logo */
+    --brand: 130 55% 25%;
+    --brand-light: 130 45% 40%;
+    --brand-dark: 130 65% 18%;
+
+    /* Warm browns - from the logo bone accent */
+    --warm: 25 40% 38%;
+    --warm-light: 30 35% 55%;
+
+    /* Core palette */
+    --background: 40 20% 98%;
+    --foreground: 130 20% 12%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 130 20% 12%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 130 20% 12%;
+
+    --primary: 130 55% 25%;
+    --primary-foreground: 40 20% 98%;
+
+    --secondary: 40 30% 95%;
+    --secondary-foreground: 130 20% 12%;
+
+    --muted: 40 15% 93%;
+    --muted-foreground: 130 10% 45%;
+
+    --accent: 30 35% 92%;
+    --accent-foreground: 25 40% 28%;
+
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 40 15% 88%;
+    --input: 40 15% 88%;
+    --ring: 130 55% 25%;
+    --radius: 0.75rem;
+
+    /* Gradients */
+    --gradient-hero: linear-gradient(135deg, hsl(130 55% 25%), hsl(130 45% 35%));
+    --gradient-warm: linear-gradient(135deg, hsl(25 40% 38%), hsl(30 35% 50%));
+    --gradient-subtle: linear-gradient(180deg, hsl(40 20% 98%), hsl(40 15% 95%));
+    --gradient-card-hover: linear-gradient(135deg, hsl(130 45% 96%), hsl(40 30% 97%));
+
+    /* Shadows */
+    --shadow-sm: 0 1px 3px hsl(130 20% 12% / 0.06);
+    --shadow-md: 0 4px 12px hsl(130 20% 12% / 0.08);
+    --shadow-lg: 0 12px 32px hsl(130 20% 12% / 0.1);
+    --shadow-brand: 0 8px 24px hsl(130 55% 25% / 0.2);
+    --shadow-hover: 0 8px 24px hsl(130 20% 12% / 0.12);
+
+    /* Transitions */
+    --transition-fast: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display tracking-tight;
+  }
+}
+
+@layer components {
+  .brand-gradient {
+    background: var(--gradient-hero);
+  }
+  .warm-gradient {
+    background: var(--gradient-warm);
+  }
+  .subtle-gradient {
+    background: var(--gradient-subtle);
+  }
+  .shadow-brand {
+    box-shadow: var(--shadow-brand);
+  }
+  .shadow-hover {
+    box-shadow: var(--shadow-hover);
+  }
+  .transition-smooth {
+    transition: var(--transition-smooth);
+  }
+  .transition-bounce {
+    transition: var(--transition-bounce);
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+}
