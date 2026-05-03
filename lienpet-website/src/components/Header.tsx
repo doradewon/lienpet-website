@@ -23,7 +23,7 @@ export default function Header() {
     <header className="sticky top-0 z-50 bg-card/95 backdrop-blur-md border-b">
       <div className="container mx-auto px-4 h-16 flex items-center justify-between">
         <Link to="/" className="flex items-center gap-3">
-          <img src="/logo.png" alt="LienPet" className="object-contain" style={{ width: '4cm', height: '3cm' }} />
+          <img src="/logo.png" alt="LienPet" className="object-contain" style={{ height: '60px' }} />
         </Link>
 
         <nav className="hidden md:flex items-center gap-1">

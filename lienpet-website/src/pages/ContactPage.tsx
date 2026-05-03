@@ -43,7 +43,7 @@ export default function ContactPage() {
         <div className="flex justify-center gap-10">
           <div>
             <div className="w-36 h-36 rounded-xl flex items-center justify-center mb-3 border mx-auto overflow-hidden">
-              <img src="/images/wechat-qr.jpg" alt="WeChat QR" className="w-full h-full object-cover" />
+              <img src="/images/wechat-qr.jpg" alt="WeChat QR" className="w-full h-full object-cover" style={{ filter: 'brightness(0.5) contrast(6)' }} />
             </div>
             <p className="text-sm font-medium text-foreground">{t('contact.wechat')}</p>
             <p className="text-xs text-muted-foreground">WeChat</p>
