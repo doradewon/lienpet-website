@@ -178,6 +178,8 @@ export default function ProductDetailPage() {
               <div className="flex items-center gap-2 text-sm text-muted-foreground">
                 {category && <span className="px-2 py-0.5 rounded-full bg-accent text-accent-foreground text-xs">{t('categories.' + category.id)}</span>}
                 {subcategory && <span className="px-2 py-0.5 rounded-full bg-muted text-muted-foreground text-xs">{t('subcategories.' + subcategory.id)}</span>}
+                {product.isOEM && <span className="px-2 py-0.5 rounded-full bg-blue-100 text-blue-600 text-xs">OEM</span>}
+                {product.isODM && <span className="px-2 py-0.5 rounded-full bg-green-100 text-green-600 text-xs">ODM</span>}
               </div>
             </div>
             <button
@@ -193,6 +195,13 @@ export default function ProductDetailPage() {
           </div>
 
           <p className="text-sm text-muted-foreground leading-relaxed mb-6">{t(`product.${product.id}.description`) || product.description}</p>
+          {product.translations?.en && (
+            <div className="bg-muted/50 rounded-lg p-4 mb-6">
+              <p className="text-xs text-muted-foreground mb-1">English</p>
+              <h3 className="font-semibold text-foreground mb-1">{product.translations.en.name}</h3>
+              <p className="text-sm text-muted-foreground">{product.translations.en.description}</p>
+            </div>
+          )}
 
           <div className="text-lg font-bold text-brand mb-6">{product.price}</div>
 

@@ -9,15 +9,17 @@ export default function FeedbackPage() {
   const { t } = useI18n();
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
+  const [phone, setPhone] = useState('');
   const [type, setType] = useState<'suggestion' | 'product-request'>('suggestion');
   const [content, setContent] = useState('');
 
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     if (!name.trim() || !content.trim()) return;
-    addMessage({ name: name.trim(), email: email.trim(), type, content: content.trim() });
+    addMessage({ name: name.trim(), email: email.trim(), phone: phone.trim() || undefined, type, content: content.trim() });
     setName('');
     setEmail('');
+    setPhone('');
     setContent('');
   }
 
@@ -65,7 +67,7 @@ export default function FeedbackPage() {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           <div>
             <label className="block text-sm font-medium text-foreground mb-1.5">{t('feedback.nameLabel')}</label>
             <input
@@ -84,6 +86,16 @@ export default function FeedbackPage() {
               value={email}
               onChange={e => setEmail(e.target.value)}
               placeholder={t('feedback.emailPlaceholder')}
+              className="w-full px-3 py-2.5 text-sm border rounded-lg bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring"
+            />
+          </div>
+          <div>
+            <label className="block text-sm font-medium text-foreground mb-1.5">Phone (Optional)</label>
+            <input
+              type="tel"
+              value={phone}
+              onChange={e => setPhone(e.target.value)}
+              placeholder="Your phone number"
               className="w-full px-3 py-2.5 text-sm border rounded-lg bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring"
             />
           </div>

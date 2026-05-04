@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Mail, Phone, MapPin } from 'lucide-react';
+import { Mail, Phone, MapPin, ExternalLink } from 'lucide-react';
 import { useI18n } from '@/i18n/I18nContext';
 
 export default function Footer() {
@@ -40,6 +40,17 @@ export default function Footer() {
                 <MapPin className="w-4 h-4 shrink-0" />
                 {t('contact.addressValue')}
               </li>
+              <li>
+                <a
+                  href="https://uchoo.m.en.alibaba.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-smooth"
+                >
+                  <ExternalLink className="w-4 h-4 shrink-0" />
+                  Alibaba Store
+                </a>
+              </li>
             </ul>
           </div>
 
@@ -63,6 +74,9 @@ export default function Footer() {
         </div>
 
         <div className="mt-8 pt-6 border-t text-center">
+          <p className="text-xs text-muted-foreground mb-2">
+            Yiwu Lien Biotechnology Co.,Ltd
+          </p>
           <p className="text-xs text-muted-foreground">
             &copy; {new Date().getFullYear()} LienPet. All rights reserved.
           </p>

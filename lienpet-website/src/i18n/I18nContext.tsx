@@ -22,10 +22,50 @@ function getNestedValue(obj: Record<string, unknown>, path: string): string | un
   return typeof current === 'string' ? current : undefined;
 }
 
+const localeMap: Record<Language, string> = {
+  en: 'en-US',
+  zh: 'zh-CN',
+  fr: 'fr-FR',
+  de: 'de-DE',
+  es: 'es-ES',
+  pt: 'pt-PT',
+  ru: 'ru-RU',
+  ja: 'ja-JP',
+  ko: 'ko-KR',
+  ar: 'ar-SA',
+  hi: 'hi-IN',
+  bn: 'bn-BD',
+  'pt-BR': 'pt-BR',
+  id: 'id-ID',
+  ur: 'ur-PK',
+  'es-419': 'es-419',
+  pa: 'pa-IN',
+  vi: 'vi-VN',
+  it: 'it-IT',
+  tr: 'tr-TR',
+  nl: 'nl-NL',
+  pl: 'pl-PL',
+  sv: 'sv-SE',
+  no: 'nb-NO',
+  da: 'da-DK',
+  fi: 'fi-FI',
+  el: 'el-GR',
+  cs: 'cs-CZ',
+  hu: 'hu-HU',
+  ro: 'ro-RO',
+};
+
 export function I18nProvider({ children }: { children: React.ReactNode }) {
   const [lang, setLangState] = useState<Language>(() => {
     const saved = localStorage.getItem('lienpet-lang') as Language | null;
-    return saved === 'zh' || saved === 'en' ? saved : 'en';
+    if (saved && Object.keys(translations).includes(saved)) {
+      return saved;
+    }
+    const browserLang = navigator.language.substring(0, 2) as Language;
+    if (Object.keys(translations).includes(browserLang)) {
+      return browserLang;
+    }
+    return 'en';
   });
 
   const setLang = useCallback((newLang: Language) => {
@@ -54,7 +94,7 @@ export function I18nProvider({ children }: { children: React.ReactNode }) {
   );
 
   useEffect(() => {
-    document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en';
+    document.documentElement.lang = localeMap[lang];
   }, [lang]);
 
   return (

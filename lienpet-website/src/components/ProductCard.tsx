@@ -45,8 +45,8 @@ export default function ProductCard({ product }: ProductCardProps) {
             {productName}
           </h3>
         </Link>
-        <p className="text-xs text-muted-foreground line-clamp-2 mb-2">
-          {productDesc}
+        <p className="text-xs text-muted-foreground mb-2">
+          {productDesc.substring(0, 50)}...
         </p>
         <span className="text-xs font-medium text-brand">{product.price}</span>
       </div>

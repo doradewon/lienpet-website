@@ -10,28 +10,112 @@ import ProductDetailPage from '@/pages/ProductDetailPage';
 import FavoritesPage from '@/pages/FavoritesPage';
 import FeedbackPage from '@/pages/FeedbackPage';
 import ContactPage from '@/pages/ContactPage';
+import TestPage from '@/pages/TestPage';
+import { AdminLayout } from '@/admin/components/AdminLayout';
+import { DashboardPage } from '@/admin/pages/DashboardPage';
+import { ProductsPage as AdminProductsPage } from '@/admin/pages/ProductsPage';
+import { MessagesPage as AdminMessagesPage } from '@/admin/pages/MessagesPage';
+import { FavoritesPage as AdminFavoritesPage } from '@/admin/pages/FavoritesPage';
 
 function App() {
   return (
     <BrowserRouter>
       <I18nProvider>
-      <StoreProvider>
-        <div className="min-h-screen bg-background text-foreground flex flex-col">
-          <Header />
-          <ToastContainer />
-          <div className="flex-1">
-            <Routes>
-              <Route path="/" element={<HomePage />} />
-              <Route path="/products" element={<ProductsPage />} />
-              <Route path="/product/:id" element={<ProductDetailPage />} />
-              <Route path="/favorites" element={<FavoritesPage />} />
-              <Route path="/feedback" element={<FeedbackPage />} />
-              <Route path="/contact" element={<ContactPage />} />
-            </Routes>
-          </div>
-          <Footer />
-        </div>
-      </StoreProvider>
+        <StoreProvider>
+          <Routes>
+            {/* Frontend Routes */}
+            <Route path="/" element={
+              <div style={{ minHeight: '100vh', backgroundColor: '#faf8f5', display: 'flex', flexDirection: 'column' }}>
+                <Header />
+                <ToastContainer />
+                <div style={{ flex: 1 }}>
+                  <HomePage />
+                </div>
+                <Footer />
+              </div>
+            } />
+            <Route path="/products" element={
+              <div style={{ minHeight: '100vh', backgroundColor: '#faf8f5', display: 'flex', flexDirection: 'column' }}>
+                <Header />
+                <ToastContainer />
+                <div style={{ flex: 1 }}>
+                  <ProductsPage />
+                </div>
+                <Footer />
+              </div>
+            } />
+            <Route path="/product/:id" element={
+              <div style={{ minHeight: '100vh', backgroundColor: '#faf8f5', display: 'flex', flexDirection: 'column' }}>
+                <Header />
+                <ToastContainer />
+                <div style={{ flex: 1 }}>
+                  <ProductDetailPage />
+                </div>
+                <Footer />
+              </div>
+            } />
+            <Route path="/favorites" element={
+              <div style={{ minHeight: '100vh', backgroundColor: '#faf8f5', display: 'flex', flexDirection: 'column' }}>
+                <Header />
+                <ToastContainer />
+                <div style={{ flex: 1 }}>
+                  <FavoritesPage />
+                </div>
+                <Footer />
+              </div>
+            } />
+            <Route path="/feedback" element={
+              <div style={{ minHeight: '100vh', backgroundColor: '#faf8f5', display: 'flex', flexDirection: 'column' }}>
+                <Header />
+                <ToastContainer />
+                <div style={{ flex: 1 }}>
+                  <FeedbackPage />
+                </div>
+                <Footer />
+              </div>
+            } />
+            <Route path="/contact" element={
+              <div style={{ minHeight: '100vh', backgroundColor: '#faf8f5', display: 'flex', flexDirection: 'column' }}>
+                <Header />
+                <ToastContainer />
+                <div style={{ flex: 1 }}>
+                  <ContactPage />
+                </div>
+                <Footer />
+              </div>
+            } />
+            <Route path="/test" element={
+              <TestPage />
+            } />
+
+            {/* Admin Routes */}
+            <Route path="/admin/dashboard" element={
+              <AdminLayout currentPage="dashboard">
+                <DashboardPage />
+              </AdminLayout>
+            } />
+            <Route path="/admin/products" element={
+              <AdminLayout currentPage="products">
+                <AdminProductsPage />
+              </AdminLayout>
+            } />
+            <Route path="/admin/messages" element={
+              <AdminLayout currentPage="messages">
+                <AdminMessagesPage />
+              </AdminLayout>
+            } />
+            <Route path="/admin/favorites" element={
+              <AdminLayout currentPage="favorites">
+                <AdminFavoritesPage />
+              </AdminLayout>
+            } />
+            <Route path="/admin" element={
+              <AdminLayout currentPage="dashboard">
+                <DashboardPage />
+              </AdminLayout>
+            } />
+          </Routes>
+        </StoreProvider>
       </I18nProvider>
     </BrowserRouter>
   );
