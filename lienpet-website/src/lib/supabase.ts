@@ -6,5 +6,12 @@ const supabaseKey = import.meta.env.VITE_SUPABASE_ANON_KEY || 'your-anon-key';
 export const supabase = createClient(supabaseUrl, supabaseKey);
 
 export async function initSupabase() {
-  await supabase.auth.signInAnonymously();
+  try {
+    // 尝试匿名登录，如果失败也不阻止应用启动
+    await supabase.auth.signInAnonymously().catch(() => {
+      console.log('Supabase anonymous login skipped');
+    });
+  } catch (error) {
+    console.log('Supabase init skipped:', error);
+  }
 }

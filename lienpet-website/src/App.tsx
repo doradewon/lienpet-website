@@ -11,6 +11,8 @@ import FavoritesPage from '@/pages/FavoritesPage';
 import FeedbackPage from '@/pages/FeedbackPage';
 import ContactPage from '@/pages/ContactPage';
 import TestPage from '@/pages/TestPage';
+import DebugPage from '@/pages/DebugPage';
+import SimpleTestPage from '@/pages/SimpleTestPage';
 import { AdminLayout } from '@/admin/components/AdminLayout';
 import { DashboardPage } from '@/admin/pages/DashboardPage';
 import { ProductsPage as AdminProductsPage } from '@/admin/pages/ProductsPage';
@@ -86,6 +88,12 @@ function App() {
             } />
             <Route path="/test" element={
               <TestPage />
+            } />
+            <Route path="/debug" element={
+              <DebugPage />
+            } />
+            <Route path="/simple-test" element={
+              <SimpleTestPage />
             } />
 
             {/* Admin Routes */}

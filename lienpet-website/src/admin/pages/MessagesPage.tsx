@@ -8,6 +8,9 @@ export function MessagesPage() {
   const { lang } = useI18n();
   const [expandedMessage, setExpandedMessage] = useState<string | null>(null);
   const [filterType, setFilterType] = useState<'all' | 'suggestion' | 'product-request'>('all');
+  
+  console.log('MessagesPage - messages count:', messages.length);
+  console.log('MessagesPage - messages:', messages);
 
   const filteredMessages = messages.filter((msg) => {
     if (filterType === 'all') return true;

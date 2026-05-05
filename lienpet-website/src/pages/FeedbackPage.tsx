@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { MessageSquare, Send, Lightbulb, Package } from 'lucide-react';
+import { MessageSquare, Send, Lightbulb, Package, CheckCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useStore } from '@/store/useStore';
 import { useI18n } from '@/i18n/I18nContext';
@@ -12,15 +12,18 @@ export default function FeedbackPage() {
   const [phone, setPhone] = useState('');
   const [type, setType] = useState<'suggestion' | 'product-request'>('suggestion');
   const [content, setContent] = useState('');
+  const [submitted, setSubmitted] = useState(false);
 
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     if (!name.trim() || !content.trim()) return;
     addMessage({ name: name.trim(), email: email.trim(), phone: phone.trim() || undefined, type, content: content.trim() });
+    setSubmitted(true);
     setName('');
     setEmail('');
     setPhone('');
     setContent('');
+    setTimeout(() => setSubmitted(false), 3000);
   }
 
   return (
@@ -34,6 +37,13 @@ export default function FeedbackPage() {
           {t('feedback.subtitle')}
         </p>
       </div>
+
+      {submitted && (
+        <div className="mb-6 p-4 bg-green-50 border border-green-200 rounded-lg flex items-center gap-3">
+          <CheckCircle className="w-5 h-5 text-green-600" />
+          <span className="text-green-800">Message submitted successfully! We will contact you soon.</span>
+        </div>
+      )}
 
       <form onSubmit={handleSubmit} className="bg-card border rounded-xl p-6 space-y-5">
         {/* Type selector */}
@@ -69,7 +79,7 @@ export default function FeedbackPage() {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           <div>
-            <label className="block text-sm font-medium text-foreground mb-1.5">{t('feedback.nameLabel')}</label>
+            <label className="block text-sm font-medium text-foreground mb-1.5">{t('feedback.nameLabel')} *</label>
             <input
               type="text"
               required
@@ -103,7 +113,7 @@ export default function FeedbackPage() {
 
         <div>
           <label className="block text-sm font-medium text-foreground mb-1.5">
-            {type === 'suggestion' ? t('feedback.suggestionLabel') : t('feedback.requestLabel')}
+            {type === 'suggestion' ? t('feedback.suggestionLabel') : t('feedback.requestLabel')} *
           </label>
           <textarea
             required
